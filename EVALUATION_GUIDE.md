@@ -1,10 +1,10 @@
-﻿# UniversalMind Evaluation SDK â€” 30-Minute Evaluation Guide
+# UniversalMind Evaluation SDK - 30-Minute Evaluation Guide
 
 **Version:** 0.3.0a1-eval
-**Status:** EVALUATION ONLY â€” Not for production use
+**Status:** EVALUATION ONLY - Not for production use
 **Audience:** First-time external technical evaluator
 **Time required:** 30 minutes, no prior knowledge of the codebase
-**Network:** Local only â€” do not expose to 0.0.0.0 or a public network
+**Network:** Local only - do not expose to 0.0.0.0 or a public network
 
 ---
 
@@ -27,7 +27,7 @@ If at any point the product seems to claim otherwise, that is a bug in documenta
 
 1. **You are the authority.** The system recommends. You decide.
 2. **Evaluation input stays local at runtime.** This build has no configured outbound model/API dependency or product telemetry. Package installation may of course contact your configured Python package index.
-3. **Do not try to â€œmake it work.â€** If something is confusing, slow, or unclear, stop and write it down. Your friction is the deliverable.
+3. **Do not try to "make it work."** If something is confusing, slow, or unclear, stop and write it down. Your friction is the deliverable.
 4. **Do not invent results.** Only report what you actually saw on screen / in the API response.
 5. **You do not need to understand the architecture.** If the product only makes sense after an architecture lecture, that is a failure of the product, not of you.
 
@@ -43,11 +43,11 @@ If at any point the product seems to claim otherwise, that is a bug in documenta
 
 | Minutes | What you do | Goal |
 | :--- | :--- | :--- |
-| 0â€“5 | Read Section 1 and 5 | Understand what you are evaluating |
-| 5â€“10 | Install + `doctor` | Prove clean install |
-| 10â€“20 | Run Scenario A | See a full review lifecycle |
-| 20â€“25 | Make a human decision | Test the governance boundary |
-| 25â€“30 | Fill the Friction Log | Tell us what broke / confused you |
+| 0-5 | Read Section 1 and 5 | Understand what you are evaluating |
+| 5-10 | Install + `doctor` | Prove clean install |
+| 10-20 | Run Scenario A | See a full review lifecycle |
+| 20-25 | Make a human decision | Test the governance boundary |
+| 25-30 | Fill the Friction Log | Tell us what broke / confused you |
 
 Set a timer. If you get stuck for more than 5 minutes on any step, stop and log it. That is a valid evaluation result.
 
@@ -67,7 +67,7 @@ Key terms you will see:
 
 ## 6. Step-by-Step
 
-### Step 1 â€” Install (5 minutes)
+### Step 1 - Install (5 minutes)
 
 ```bash
 # In a fresh venv
@@ -93,7 +93,7 @@ Check that imports come from `site-packages`, not from a source checkout:
 python -c "import universalmind; print(universalmind.__file__)"
 ```
 
-### Step 2 â€” Start the Workbench (2 minutes)
+### Step 2 - Start the Workbench (2 minutes)
 
 ```bash
 universalmind serve
@@ -104,10 +104,10 @@ universalmind serve
 - Open `http://127.0.0.1:8000` in your browser.
 
 Smoke test:
-- `GET /health` â†’ `status = ok`
-- `GET /` â†’ redirects to `/static/index.html` (HTTP 307)
+- `GET /health` -> `status = ok`
+- `GET /` -> redirects to `/static/index.html` (HTTP 307)
 
-### Step 3 â€” First-User Comprehension (3 minutes, do not run anything yet)
+### Step 3 - First-User Comprehension (3 minutes, do not run anything yet)
 
 Before you click RUN, answer for yourself:
 
@@ -116,13 +116,13 @@ Before you click RUN, answer for yourself:
 3. Can you tell that a recommendation is not a decision?
 4. Can you tell when *your* authority begins?
 
-If any answer is â€œnoâ€ or â€œnot sureâ€, write it down. Do not read source code to figure it out.
+If any answer is "no" or "not sure", write it down. Do not read source code to figure it out.
 
-### Step 4 â€” Run Scenario A (10 minutes)
+### Step 4 - Run Scenario A (10 minutes)
 
 Use this exact scenario. Do not change the wording for your first run:
 
-> **Scenario A:** â€œI need to choose between launching a project quickly at lower cost with higher execution risk, or launching more slowly at higher cost with lower execution risk.â€
+> **Scenario A:** "I need to choose between launching a project quickly at lower cost with higher execution risk, or launching more slowly at higher cost with lower execution risk."
 
 Submit it through the Workbench UI / product API path.
 
@@ -138,7 +138,7 @@ Capture and save:
 
 **Stop here.** Do not approve automatically. The system should be waiting for you.
 
-### Step 5 â€” Human Decision Boundary (5 minutes)
+### Step 5 - Human Decision Boundary (5 minutes)
 
 You are now being asked to decide. The UI should make it clear:
 
@@ -149,12 +149,12 @@ You are now being asked to decide. The UI should make it clear:
 
 Choose one, using the *exact* `review_id` from Step 4:
 
-**Option A â€” Approve:**
+**Option A - Approve:**
 ```text
 POST /approve  { "review_id": "<exact review_id from Step 4>" }
 ```
 
-**Option B â€” Reject:**
+**Option B - Reject:**
 ```text
 POST /reject  { "review_id": "<exact review_id from Step 4>" }
 ```
@@ -165,7 +165,7 @@ Verify after:
 - Approval dispatch occurred only after your explicit approval; rejection did not dispatch
 - Keep using the same original `review_id` for the outcome step
 
-### Step 6 â€” Human Outcome (3 minutes)
+### Step 6 - Human Outcome (3 minutes)
 
 Now tell the system what you actually observed / chose in the real world. Use your own words. Do not let the system invent it.
 
@@ -178,7 +178,7 @@ Verify:
 - The outcome `action_id` matches the governed action
 - No new governed action or dispatch was created by recording the observation
 
-### Step 7 â€” Stop the Server
+### Step 7 - Stop the Server
 
 Stop `universalmind serve`. No persistence is required for this evaluation to count.
 
@@ -197,7 +197,7 @@ This evaluation is successful if you can answer YES to these:
 
 It is NOT required that you agree with the recommendation. Disagreement is valid data.
 
-## 8. Known Limitations â€” Please Do Not Work Around Them
+## 8. Known Limitations - Please Do Not Work Around Them
 
 These are intentional limits in 0.3.0a1-eval:
 
@@ -209,7 +209,7 @@ These are intentional limits in 0.3.0a1-eval:
 
 If the UI or docs imply otherwise, that is a documentation bug. Report it.
 
-## 9. Friction Log â€” This Is Your Main Deliverable
+## 9. Friction Log - This Is Your Main Deliverable
 
 Copy this, fill it, and send it back. One line per friction is enough. We prefer blunt over polite.
 
@@ -258,7 +258,7 @@ No need to write a formal report. The log above is enough.
 
 ---
 
-## Appendix â€” CLI Reference
+## Appendix - CLI Reference
 
 ```bash
 universalmind info    # Show version and evaluation boundary
@@ -266,10 +266,10 @@ universalmind doctor  # Check python / product_api / static_ui
 universalmind serve   # Start local Workbench on 127.0.0.1 only
 ```
 
-## Appendix â€” Endpoints Used in This Guide
+## Appendix - Endpoints Used in This Guide
 
 - `GET /health`
-- `GET /` â†’ `307` â†’ `/static/index.html`
+- `GET /` -> `307` -> `/static/index.html`
 - `POST /approve`
 - `POST /reject`
 - `POST /outcome`
